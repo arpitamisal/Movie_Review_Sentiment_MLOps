@@ -13,8 +13,16 @@ pipeline {
     }
     stage('Deploy API') {
       steps {
-        sh 'docker run -d -p 5050:5000 sentiment-api'
+        sh 'docker run -d -p 5000:5000 sentiment-api'
       }
+    }
+  }
+  post {
+    success {
+      echo '✅ Build and deployment successful!'
+    }
+    failure {
+      echo '❌ Build failed. Check the console output.'
     }
   }
 }
